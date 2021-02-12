@@ -1,0 +1,98 @@
+<head>
+	<title>Home Dashboard</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-size: 32px;
+			font-family: monospace;
+			padding: 0.5rem;
+		}
+
+		.card {
+			border: 4px solid #ccc;
+			display: inline-block;
+			font-size: 3em;
+			margin: 0.5rem 0;
+			padding: 1rem;
+		}
+
+		h5 {
+			font-size: 0.2em;
+			font-weight: normal;
+		}
+
+		button {
+			background: white;
+			border: 4px solid #666;
+			cursor: pointer;
+			font-size: 0.5em;
+			margin: 0.5rem 0;
+			min-width: 2em;
+			padding: 0 0.5rem;
+			width: 100%;
+		}
+
+		button:active, button:focus, button:hover {
+		    background: #666;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="card">
+		<h5>Living Room</h5>
+		{{data.attributes.current_temperature}}
+	</div>
+
+	<div class="card">
+		<h5>Bedroom</h5>
+		{{data.attributes.current_temperature}}
+	</div>
+
+	<div class="card">
+		<h5>Lights</h5>
+
+		<form method="POST">
+			<input type="hidden" name="lights" value="all-off">
+			<button type="submit">Off</button>
+		</form>
+
+		<form method="POST">
+			<input type="hidden" name="lights" value="all-on">
+			<button type="submit">On</button>
+		</form>
+	</div>
+
+	<div class="card">
+		<h5>Call</h5>
+
+		<form method="POST">
+			<input type="hidden" name="lights" value="call-start">
+			<button type="submit">Start</button>
+		</form>
+
+		<form method="POST">
+			<input type="hidden" name="lights" value="call-end">
+			<button type="submit">End</button>
+		</form>
+	</div>
+
+	<div class="card">
+		<h5>Audio</h5>
+		<div class="card-content">
+			<form method="POST">
+				<input type="hidden" name="audio" value="1">
+				<button type="submit">Streaming</button>
+			</form>
+
+			<form method="POST">
+				<input type="hidden" name="audio" value="2">
+				<button type="submit">Turntable</button>
+			</form>
+		</div>
+	</div>
+</body>
