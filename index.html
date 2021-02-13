@@ -55,7 +55,21 @@
 	</div>
 
 	<div class="card">
-		<h5>Lights</h5>
+		<h5>Heat</h5>
+
+		<form method="POST">
+			<input type="hidden" name="heat" value="heat-eco">
+			<button type="submit">Eco</button>
+		</form>
+
+		<form method="POST">
+			<input type="hidden" name="heat" value="heat-comfort">
+			<button type="submit">Comfort</button>
+		</form>
+	</div>
+
+	<div class="card">
+		<h5>All Lights</h5>
 
 		<form method="POST">
 			<input type="hidden" name="lights" value="all-off">
@@ -69,7 +83,7 @@
 	</div>
 
 	<div class="card">
-		<h5>Call</h5>
+		<h5>Work Lights</h5>
 
 		<form method="POST">
 			<input type="hidden" name="lights" value="call-start">
@@ -87,12 +101,12 @@
 		<div class="card-content">
 			<form method="POST">
 				<input type="hidden" name="audio" value="1">
-				<button type="submit">Streaming</button>
+				<button type="submit">Echo</button>
 			</form>
 
 			<form method="POST">
 				<input type="hidden" name="audio" value="2">
-				<button type="submit">Turntable</button>
+				<button type="submit">Phono</button>
 			</form>
 		</div>
 	</div>
