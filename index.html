@@ -8,107 +8,146 @@
 		}
 
 		body {
-			font-size: 28px;
+			font-size: 1.75rem;
 			font-family: monospace;
-			padding: 0.5rem;
+			margin: 0.5rem;
 		}
 
-		.card {
-			border: 4px solid #ccc;
-			display: inline-block;
-			font-size: 3em;
-			margin: 0.4rem 0;
-			padding: 1rem;
-			text-align: center;
-		}
+		.card, button {
+            border: 1px solid #999;
+            border-radius: 0.5rem;
+            width: 5rem;
+            height: 5rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
 
-		h5 {
-			font-size: 0.2em;
-			font-weight: normal;
-		}
+        .card {
+            width: 13.5rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
 
-		button {
+        .card span {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        form {
+            display: inline-block;
+            margin-right: -0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        button {
 			background: white;
-			border: 4px solid #666;
 			cursor: pointer;
-			font-size: 0.5em;
-			margin: 0.5rem 0;
-			min-width: 2em;
+			font-size: 2rem;
 			padding: 0 0.5rem;
-			width: 100%;
+			font-family: monospace;
 		}
 
 		button:active, button:focus, button:hover {
 		    background: #666;
 		}
+
+        h5 {
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        span {
+            line-height: 2;
+            font-family: sans-serif;
+        }
 	</style>
 </head>
 
 <body>
 	<div class="card">
 		<h5>Living Room</h5>
-		{{data.living_room.attributes.current_temperature}}
+		<span>{{payload.climate_fritz_dect_301_1.attributes.current_temperature}}</span>
 	</div>
 
 	<div class="card">
 		<h5>Bedroom</h5>
-		{{data.bedroom.attributes.current_temperature}}
+		<span>{{payload.climate_bedroom_heater.attributes.current_temperature}}</span>
 	</div>
 
 	<div class="card">
-		<h5>Heat</h5>
-
-		<form method="POST">
-			<input type="hidden" name="heat" value="heat-eco">
-			<button type="submit">Eco</button>
-		</form>
-
-		<form method="POST">
-			<input type="hidden" name="heat" value="heat-comfort">
-			<button type="submit">Comfort</button>
-		</form>
+		<h5>Temperature</h5>
+		<span>{{ payload.sensor_room_temperature }}&deg;</span>
 	</div>
 
 	<div class="card">
-		<h5>All Lights</h5>
-
-		<form method="POST">
-			<input type="hidden" name="lights" value="all-off">
-			<button type="submit">Off</button>
-		</form>
-
-		<form method="POST">
-			<input type="hidden" name="lights" value="all-on">
-			<button type="submit">On</button>
-		</form>
+		<h5>Humidity</h5>
+		<span>{{ payload.sensor_room_humidity }}%</span>
 	</div>
 
-	<div class="card">
-		<h5>Work Lights</h5>
+	<div></div>
 
-		<form method="POST">
-			<input type="hidden" name="lights" value="call-start">
-			<button type="submit">Start</button>
-		</form>
+	<form method="POST">
+		<input type="hidden" name="heat" value="heat-eco">
+		<button type="submit">
+			<h5>Heat</h5>
+			<span>Eco</span>
+		</button>
+	</form>
 
-		<form method="POST">
-			<input type="hidden" name="lights" value="call-end">
-			<button type="submit">End</button>
-		</form>
-	</div>
+	<form method="POST">
+		<input type="hidden" name="heat" value="heat-comfort">
+		<button type="submit">
+			<h5>Heat</h5>
+			<span>Max</span>
+		</button>
+	</form>
 
-	<div class="card">
-		<h5>Audio</h5>
-		<div class="card-content">
-			<form method="POST">
-				<input type="hidden" name="audio" value="1">
-				<button type="submit">Echo</button>
-			</form>
+	<form method="POST">
+		<input type="hidden" name="lights" value="all-off">
+		<button type="submit">
+			<h5>Lights</h5>
+			<span>Off</span>
+		</button>
+	</form>
 
-			<form method="POST">
-				<input type="hidden" name="audio" value="2">
-				<button type="submit">Phono</button>
-			</form>
-		</div>
-	</div>
+	<form method="POST">
+		<input type="hidden" name="lights" value="all-on">
+		<button type="submit">
+			<h5>Lights</h5>
+			<span>On</span>
+		</button>
+	</form>
+
+	<form method="POST">
+		<input type="hidden" name="lights" value="call-start">
+		<button type="submit">
+			<h5>Study</h5>
+			<span>Start</span>
+		</button>
+	</form>
+
+	<form method="POST">
+		<input type="hidden" name="lights" value="call-end">
+		<button type="submit">
+			<h5>Study</h5>
+			<span>End</span>
+		</button>
+	</form>
+
+
+	<form method="POST">
+		<input type="hidden" name="audio" value="1">
+		<button type="submit">
+			<h5>Audio</h5>
+			<span>Dot</span>
+		</button>
+	</form>
+
+	<form method="POST">
+		<input type="hidden" name="audio" value="2">
+		<button type="submit">
+			<h5>Audio</h5>
+			<span>TT</span>
+		</button>
+	</form>
 </body>
