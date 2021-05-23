@@ -1,6 +1,5 @@
 <head>
 	<title>Home Dashboard</title>
-	<meta http-equiv="refresh" content="600">
 	<style>
 		* {
 			margin: 0;
@@ -31,6 +30,11 @@
         .card span {
             font-size: 4rem;
             line-height: 1;
+        }
+
+        .info {
+            font-size: small;
+            margin-top: 0.8rem;
         }
 
         form {
@@ -64,24 +68,34 @@
 </head>
 
 <body>
+    <div class="card">
+		<h5>Outside</h5>
+		<span id="outside_temperature">{{payload.weather_home.attributes.temperature}}</span><span>&deg;</span>
+	</div>
+
+	<div class="card">
+		<h5>Outside</h5>
+		<span id="outside_humidity">{{payload.weather_home.attributes.humidity}}</span><span>%</span>
+	</div>
+
+	<div class="card">
+		<h5>Inside</h5>
+		<span id="inside_temperature">{{ payload.sensor_room_temperature_11 }}</span><span>&deg;</span>
+	</div>
+
+	<div class="card">
+		<h5>Inside</h5>
+		<span id="inside_humidity">{{ payload.sensor_room_humidity_11 }}</span><span>%</span>
+	</div>
+
 	<div class="card">
 		<h5>Living Room</h5>
-		<span>{{payload.climate_fritz_dect_301_1.attributes.current_temperature}}</span>
+		<span id="living_room_heater">{{payload.climate_fritz_dect_301_1.attributes.current_temperature}}</span>
 	</div>
 
 	<div class="card">
 		<h5>Bedroom</h5>
-		<span>{{payload.climate_bedroom_heater.attributes.current_temperature}}</span>
-	</div>
-
-	<div class="card">
-		<h5>Temperature</h5>
-		<span>{{ payload.sensor_room_temperature }}&deg;</span>
-	</div>
-
-	<div class="card">
-		<h5>Humidity</h5>
-		<span>{{ payload.sensor_room_humidity }}%</span>
+		<span id="bedroom_heater">{{payload.climate_bedroom_heater.attributes.current_temperature}}</span>
 	</div>
 
 	<div></div>
@@ -150,4 +164,27 @@
 			<span>TT</span>
 		</button>
 	</form>
+
+	<div id="now_playing" class="info"></div>
+
+	<script type="text/javascript">
+	    function apiResultsDone(data) {
+	        for (var item in data) {
+	            document.querySelector('#' + item).innerText = data[item]
+	        }
+	    }
+
+	    function updateData() {
+	        var oldScript = document.querySelector('#api-results')
+	        ;oldScript && document.body.removeChild(oldScript);
+
+	        var s = document.createElement('script')
+	        s.id = 'api-results'
+	        s.src = 'http://192.168.178.43:1880/endpoint/kindle-api'
+	        document.body.appendChild(s)
+	    }
+
+	    updateData()
+	    setInterval(updateData, 300000)
+	</script>
 </body>
